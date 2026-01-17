@@ -7,14 +7,24 @@ Factory automation mod for Hytale - from steam age to quantum tech.
 ## Features
 
 ### Power System
+
+Fabrica uses real-world units: **Watts** (W) for power and **Joules** (J) for energy.
+
+| Machine | Power | Capacity/Cost |
+|---------|-------|---------------|
+| Generator | 400 W output | 1,000 J buffer |
+| Battery | 640 W charge/discharge | 100,000 J (100 kJ) |
+| Macerator | 160 W | 1,600 J per operation |
+| Electric Furnace | 160 W | 1,280 J per operation |
+
 - **Energy Networks**: Machines connected via cables form automatic power networks
-- **Generators**: Burn fuel to produce energy (20 FE/tick)
-- **Batteries**: Store energy for later use (10,000 FE capacity)
-- **Cables**: Transfer power between machines
+- **Generators**: Burn solid fuel (coal, wood) to produce 400 W of power
+- **Batteries**: Store up to 100 kJ for later use
+- **Cables**: Transfer power between machines in a network
 
 ### Machines
-- **Macerator**: Grind ores into dust for 2x output (40 FE/tick)
-- **Electric Furnace**: Smelt items using electricity instead of fuel (30 FE/tick)
+- **Macerator**: Grind ores into dust for 2x output (10 sec @ 160 W)
+- **Electric Furnace**: Smelt items using electricity (8 sec @ 160 W)
 
 ### Transport
 - **Conveyor Belts**: Move items automatically between machines
