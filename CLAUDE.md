@@ -539,6 +539,80 @@ Example_Block.name = Example Block
 
 ---
 
+## Custom UI (.ui Files)
+
+Hytale uses `.ui` files for custom user interfaces. These files use a **CSS/HTML-like syntax, NOT JSON**.
+
+### File Location
+
+All `.ui` files must be in `src/main/resources/Common/UI/Custom/`. The manifest must have `"IncludesAssetPack": true`.
+
+### Correct .ui Syntax
+
+```
+// Comments use double slashes
+@TextureVar = PatchStyle(TexturePath: "Common/UI/Custom/MyTexture.png");
+
+Group {
+    LayoutMode: Center;
+
+    Group #panelId {
+        Background: @TextureVar;
+        Anchor: (Width: 176, Height: 166);
+        LayoutMode: Top;
+
+        Label #labelId {
+            Style: (FontSize: 14, Alignment: Left);
+            Text: "Display Text";
+            Anchor: (Top: 6, Left: 8);
+        }
+
+        Group #slotArea {
+            Anchor: (Top: 35, Left: 56, Width: 18, Height: 18);
+            Background: @SlotTexture;
+        }
+    }
+}
+```
+
+### Key Rules
+
+- **NOT JSON**: Do not use `{}` with colons and commas like JSON. Use `Property: value;` syntax
+- **File extension**: Must be `.ui` only. Files like `.ui.json` will cause "Failed to load CustomUI documents" errors
+- **Elements**: `Group` (container/div), `Label` (text), `TextField` (input)
+- **Properties**: `Anchor` for positioning, `Background` for textures, `Style` for fonts, `LayoutMode` for layout
+- **Variables**: Define textures with `@VarName = PatchStyle(TexturePath: "path.png");`
+- **IDs**: Use `#elementId` after the element type
+
+### Opening Custom UI from Java
+
+```java
+public class MachineUI extends BasicCustomUIPage {
+    public MachineUI(PlayerRef playerRef) {
+        super(playerRef, CustomPageLifetime.CanDismiss);
+    }
+
+    @Override
+    public void build(UICommandBuilder commands) {
+        commands.append("Common/UI/Custom/MachineUI.ui");
+        commands.set("#powerLabel", "Power: 100 W");  // Update dynamic elements
+    }
+}
+
+// To open:
+Player player = store.getComponent(ref, Player.getComponentType());
+player.getPageManager().openCustomPage(ref, store, new MachineUI(playerRef));
+```
+
+### Troubleshooting
+
+| Error | Cause | Solution |
+|-------|-------|----------|
+| "Failed to load CustomUI documents" | Invalid .ui syntax or wrong file extension | Ensure files use CSS-like syntax, not JSON. Use only `.ui` extension |
+| UI not appearing | File path wrong or not registered | Check path in `commands.append()`, ensure `IncludesAssetPack: true` |
+
+---
+
 ## Logging
 
 ```java

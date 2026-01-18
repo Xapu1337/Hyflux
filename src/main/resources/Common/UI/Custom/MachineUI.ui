@@ -1,132 +1,63 @@
-{
-  "$schema": "https://hytale.com/schemas/ui.schema.json",
-  "name": "FabricaMachineUI",
-  "type": "Page",
-  "properties": {
-    "width": 400,
-    "height": 300,
-    "centered": true,
-    "background": "#2a2a2a"
-  },
-  "children": [
-    {
-      "type": "Panel",
-      "id": "header",
-      "properties": {
-        "x": 0,
-        "y": 0,
-        "width": "100%",
-        "height": 40,
-        "background": "#3a3a3a"
-      },
-      "children": [
-        {
-          "type": "Label",
-          "id": "machineTitle",
-          "properties": {
-            "x": 10,
-            "y": 10,
-            "text": "Machine",
-            "fontSize": 18,
-            "color": "#ffffff"
-          }
+// Fabrica Machine UI - Base template for processing machines
+// Used by Macerator, Electric Furnace, etc.
+
+@SlotBackground = PatchStyle(TexturePath: "Common/UI/Custom/Slot_Background.png");
+@ProgressEmpty = PatchStyle(TexturePath: "Common/UI/Custom/ProgressArrow_Empty.png");
+@ProgressFull = PatchStyle(TexturePath: "Common/UI/Custom/ProgressArrow_Full.png");
+@MachineBackground = PatchStyle(TexturePath: "Common/UI/Custom/MachineGUI_Background.png");
+@EnergyEmpty = PatchStyle(TexturePath: "Common/UI/Custom/EnergyBar_Empty.png");
+@EnergyFull = PatchStyle(TexturePath: "Common/UI/Custom/EnergyBar_Full.png");
+
+Group {
+    LayoutMode: Center;
+
+    Group #machinePanel {
+        Background: @MachineBackground;
+        Anchor: (Width: 176, Height: 166);
+        LayoutMode: Top;
+
+        // Title
+        Label #machineTitle {
+            Style: (FontSize: 14, Alignment: Left);
+            Text: "Machine";
+            Anchor: (Top: 6, Left: 8);
         }
-      ]
-    },
-    {
-      "type": "Panel",
-      "id": "content",
-      "properties": {
-        "x": 10,
-        "y": 50,
-        "width": 380,
-        "height": 200
-      },
-      "children": [
-        {
-          "type": "Slot",
-          "id": "inputSlot",
-          "properties": {
-            "x": 20,
-            "y": 60,
-            "width": 48,
-            "height": 48,
-            "slotType": "input"
-          }
-        },
-        {
-          "type": "ProgressBar",
-          "id": "progressBar",
-          "properties": {
-            "x": 90,
-            "y": 70,
-            "width": 100,
-            "height": 24,
-            "value": 0,
-            "max": 100,
-            "foreground": "#4CAF50",
-            "background": "#1a1a1a"
-          }
-        },
-        {
-          "type": "Slot",
-          "id": "outputSlot",
-          "properties": {
-            "x": 210,
-            "y": 60,
-            "width": 48,
-            "height": 48,
-            "slotType": "output"
-          }
-        },
-        {
-          "type": "Panel",
-          "id": "powerInfo",
-          "properties": {
-            "x": 20,
-            "y": 130,
-            "width": 200,
-            "height": 60,
-            "background": "#1a1a1a"
-          },
-          "children": [
-            {
-              "type": "Label",
-              "id": "powerLabel",
-              "properties": {
-                "x": 10,
-                "y": 10,
-                "text": "Power: 0 W",
-                "fontSize": 12,
-                "color": "#aaaaaa"
-              }
-            },
-            {
-              "type": "Label",
-              "id": "energyLabel",
-              "properties": {
-                "x": 10,
-                "y": 30,
-                "text": "Energy: 0 J",
-                "fontSize": 12,
-                "color": "#aaaaaa"
-              }
-            }
-          ]
+
+        // Input slot area
+        Group #inputArea {
+            Anchor: (Top: 35, Left: 56, Width: 18, Height: 18);
+            Background: @SlotBackground;
         }
-      ]
-    },
-    {
-      "type": "Button",
-      "id": "closeButton",
-      "properties": {
-        "x": 360,
-        "y": 5,
-        "width": 30,
-        "height": 30,
-        "text": "X",
-        "action": "close"
-      }
+
+        // Progress arrow
+        Group #progressBar {
+            Anchor: (Top: 35, Left: 80, Width: 24, Height: 16);
+            Background: @ProgressEmpty;
+        }
+
+        // Output slot area
+        Group #outputArea {
+            Anchor: (Top: 35, Left: 116, Width: 18, Height: 18);
+            Background: @SlotBackground;
+        }
+
+        // Energy bar
+        Group #energyBar {
+            Anchor: (Top: 8, Left: 152, Width: 16, Height: 52);
+            Background: @EnergyEmpty;
+        }
+
+        // Power info
+        Label #powerLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Power: 0 W";
+            Anchor: (Top: 60, Left: 8);
+        }
+
+        Label #energyLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Energy: 0 J";
+            Anchor: (Top: 72, Left: 8);
+        }
     }
-  ]
 }

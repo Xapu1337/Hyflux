@@ -1,0 +1,80 @@
+// Fabrica Generator GUI
+// Solid Fuel Generator interface - burns fuel to produce power
+
+@SlotBackground = PatchStyle(TexturePath: "Common/UI/Custom/Slot_Background.png");
+@BurnEmpty = PatchStyle(TexturePath: "Common/UI/Custom/BurnProgress_Empty.png");
+@BurnFull = PatchStyle(TexturePath: "Common/UI/Custom/BurnProgress_Full.png");
+@EnergyEmpty = PatchStyle(TexturePath: "Common/UI/Custom/EnergyBar_Empty.png");
+@EnergyFull = PatchStyle(TexturePath: "Common/UI/Custom/EnergyBar_Full.png");
+@PowerOff = PatchStyle(TexturePath: "Common/UI/Custom/PowerIndicator_Off.png");
+@PowerOn = PatchStyle(TexturePath: "Common/UI/Custom/PowerIndicator_On.png");
+@MachineBackground = PatchStyle(TexturePath: "Common/UI/Custom/MachineGUI_Background.png");
+
+Group {
+    LayoutMode: Center;
+
+    Group #generatorPanel {
+        Background: @MachineBackground;
+        Anchor: (Width: 176, Height: 166);
+        LayoutMode: Top;
+
+        // Title
+        Label #title {
+            Style: (FontSize: 14, Alignment: Left);
+            Text: "Generator";
+            Anchor: (Top: 6, Left: 8);
+        }
+
+        // Fuel slot
+        Group #fuelSlot {
+            Anchor: (Top: 53, Left: 56, Width: 18, Height: 18);
+            Background: @SlotBackground;
+        }
+
+        // Burn progress indicator (flame)
+        Group #burnProgress {
+            Anchor: (Top: 36, Left: 56, Width: 16, Height: 16);
+            Background: @BurnEmpty;
+        }
+
+        // Energy bar (right side)
+        Group #energyBar {
+            Anchor: (Top: 8, Left: 152, Width: 16, Height: 52);
+            Background: @EnergyEmpty;
+        }
+
+        // Power indicator light
+        Group #powerIndicator {
+            Anchor: (Top: 36, Left: 80, Width: 8, Height: 8);
+            Background: @PowerOff;
+        }
+
+        // Output label
+        Label #outputLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Output:";
+            Anchor: (Top: 20, Left: 95);
+        }
+
+        // Power output value (dynamic - updated via Java)
+        Label #powerOutput {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "0 W";
+            Anchor: (Top: 32, Left: 95);
+        }
+
+        // Burn time label
+        Label #burnTimeLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Burn Time:";
+            Anchor: (Top: 75, Left: 8);
+        }
+
+        // Burn time value (dynamic)
+        Label #burnTimeValue {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "0s";
+            Anchor: (Top: 75, Left: 70);
+        }
+    }
+}

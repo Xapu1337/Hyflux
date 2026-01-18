@@ -1,0 +1,92 @@
+// Fabrica Battery GUI
+// Energy storage interface - stores and distributes power
+
+@EnergyEmpty = PatchStyle(TexturePath: "Common/UI/Custom/EnergyBar_Empty.png");
+@EnergyFull = PatchStyle(TexturePath: "Common/UI/Custom/EnergyBar_Full.png");
+@MachineBackground = PatchStyle(TexturePath: "Common/UI/Custom/MachineGUI_Background.png");
+
+Group {
+    LayoutMode: Center;
+
+    Group #batteryPanel {
+        Background: @MachineBackground;
+        Anchor: (Width: 176, Height: 166);
+        LayoutMode: Top;
+
+        // Title
+        Label #title {
+            Style: (FontSize: 14, Alignment: Left);
+            Text: "Battery";
+            Anchor: (Top: 6, Left: 8);
+        }
+
+        // Large energy bar (center)
+        Group #energyBarLarge {
+            Anchor: (Top: 18, Left: 62, Width: 52, Height: 52);
+            Background: @EnergyEmpty;
+        }
+
+        // Charge percentage (overlaid on energy bar - dynamic)
+        Label #chargePercent {
+            Style: (FontSize: 14, Alignment: Center);
+            Text: "0%";
+            Anchor: (Top: 40, Left: 72, Width: 32);
+        }
+
+        // Stored label
+        Label #storedLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Stored:";
+            Anchor: (Top: 22, Left: 8);
+        }
+
+        // Stored value (dynamic)
+        Label #storedValue {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "0 J";
+            Anchor: (Top: 34, Left: 8);
+        }
+
+        // Capacity label
+        Label #capacityLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Capacity:";
+            Anchor: (Top: 50, Left: 8);
+        }
+
+        // Capacity value (dynamic)
+        Label #capacityValue {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "0 J";
+            Anchor: (Top: 62, Left: 8);
+        }
+
+        // Mode label
+        Label #modeLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Mode:";
+            Anchor: (Top: 22, Left: 120);
+        }
+
+        // Mode value (dynamic - Charging/Discharging/Idle)
+        Label #modeValue {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Idle";
+            Anchor: (Top: 34, Left: 120);
+        }
+
+        // Rate label
+        Label #rateLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Rate:";
+            Anchor: (Top: 50, Left: 120);
+        }
+
+        // Rate value (dynamic)
+        Label #rateValue {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "0 W";
+            Anchor: (Top: 62, Left: 120);
+        }
+    }
+}

@@ -1,0 +1,93 @@
+// Fabrica Processing Machine GUI
+// Used by Macerator, Electric Furnace, and other processing machines
+
+@SlotBackground = PatchStyle(TexturePath: "Common/UI/Custom/Slot_Background.png");
+@ProgressEmpty = PatchStyle(TexturePath: "Common/UI/Custom/ProgressArrow_Empty.png");
+@ProgressFull = PatchStyle(TexturePath: "Common/UI/Custom/ProgressArrow_Full.png");
+@EnergyEmpty = PatchStyle(TexturePath: "Common/UI/Custom/EnergyBar_Empty.png");
+@EnergyFull = PatchStyle(TexturePath: "Common/UI/Custom/EnergyBar_Full.png");
+@PowerOff = PatchStyle(TexturePath: "Common/UI/Custom/PowerIndicator_Off.png");
+@PowerOn = PatchStyle(TexturePath: "Common/UI/Custom/PowerIndicator_On.png");
+@MachineBackground = PatchStyle(TexturePath: "Common/UI/Custom/MachineGUI_Background.png");
+
+Group {
+    LayoutMode: Center;
+
+    Group #processingPanel {
+        Background: @MachineBackground;
+        Anchor: (Width: 176, Height: 166);
+        LayoutMode: Top;
+
+        // Title (dynamic - set to machine name via Java)
+        Label #title {
+            Style: (FontSize: 14, Alignment: Left);
+            Text: "Processing";
+            Anchor: (Top: 6, Left: 8);
+        }
+
+        // Power indicator
+        Group #powerIndicator {
+            Anchor: (Top: 35, Left: 8, Width: 8, Height: 8);
+            Background: @PowerOff;
+        }
+
+        // Input slot
+        Group #inputSlot {
+            Anchor: (Top: 35, Left: 56, Width: 18, Height: 18);
+            Background: @SlotBackground;
+        }
+
+        // Progress arrow
+        Group #progressArrow {
+            Anchor: (Top: 35, Left: 80, Width: 24, Height: 16);
+            Background: @ProgressEmpty;
+        }
+
+        // Output slot
+        Group #outputSlot {
+            Anchor: (Top: 35, Left: 112, Width: 18, Height: 18);
+            Background: @SlotBackground;
+        }
+
+        // Energy bar (right side)
+        Group #energyBar {
+            Anchor: (Top: 8, Left: 152, Width: 16, Height: 52);
+            Background: @EnergyEmpty;
+        }
+
+        // Power label
+        Label #powerLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Power:";
+            Anchor: (Top: 55, Left: 8);
+        }
+
+        // Power value (dynamic)
+        Label #powerValue {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "0 W";
+            Anchor: (Top: 55, Left: 45);
+        }
+
+        // Progress label
+        Label #progressLabel {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "Progress:";
+            Anchor: (Top: 67, Left: 8);
+        }
+
+        // Progress value (dynamic)
+        Label #progressValue {
+            Style: (FontSize: 10, Alignment: Left);
+            Text: "0%";
+            Anchor: (Top: 67, Left: 55);
+        }
+
+        // Current recipe (dynamic)
+        Label #recipeLabel {
+            Style: (FontSize: 8, Alignment: Left);
+            Text: "";
+            Anchor: (Top: 55, Left: 90);
+        }
+    }
+}
