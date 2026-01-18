@@ -1,39 +1,23 @@
-# Fabrica
+# Hyflux
+(Based on fabrica)
 
-Factory automation mod for Hytale - from steam age to quantum tech.
+An API for developers to have one centralized way of transmitting liquids, power, items, and gas, ensuring machines from other mods work together
 
+
+ 
 > **Note**: Hytale is in Early Access. APIs are subject to breaking changes.
 
 ## Features
 
-### Power System
+### Transfer API and Types
 
-Fabrica uses real-world units: **Watts** (W) for power and **Joules** (J) for energy.
 
-| Machine | Power | Capacity/Cost |
-|---------|-------|---------------|
-| Generator | 400 W output | 1,000 J buffer |
-| Battery | 640 W charge/discharge | 100,000 J (100 kJ) |
-| Macerator | 160 W | 1,600 J per operation |
-| Electric Furnace | 160 W | 1,280 J per operation |
+We base our power on how [Fabrica](https://github.com/Nfemz/fabrica),
+meaning we have real-world units: **Watts** (W) for power and **Joules** (J) for energy.
+However, we also provide APIs for the four most used transfer types: liquids, power, items, and gas,
+meaning you could easily build a mod that adds cables and machines and easily handle other machines without them needing to handle things.
 
-- **Energy Networks**: Machines connected via cables form automatic power networks
-- **Generators**: Burn solid fuel (coal, wood) to produce 400 W of power
-- **Batteries**: Store up to 100 kJ for later use
-- **Cables**: Transfer power between machines in a network
 
-### Machines
-- **Macerator**: Grind ores into dust for 2x output (10 sec @ 160 W)
-- **Electric Furnace**: Smelt items using electricity (8 sec @ 160 W)
-
-### Transport
-- **Conveyor Belts**: Move items automatically between machines
-
-### Materials
-- **Ores**: Copper, Tin
-- **Dusts**: Iron, Copper, Tin, Bronze
-- **Ingots**: Copper, Tin, Bronze
-- **Components**: Cables, Batteries
 
 ## Installation
 
@@ -84,45 +68,6 @@ Authenticate in the server console:
 auth login device
 auth persistence Encrypted
 ```
-
-### Testing
-1. Connect Hytale client to `127.0.0.1`
-2. Use `/fabrica` to verify the plugin is loaded
-3. Use `/fabrica give <item>` to spawn items
-4. Use `/fabrica power` to debug power networks
-
-## Project Structure
-
-```
-src/main/java/io/fabrica/
-├── FabricaPlugin.java      # Plugin entry point
-├── api/                    # Public API for mod integration
-│   └── power/              # Power system interfaces
-├── command/                # Chat commands
-├── machine/                # Machine implementations
-├── power/                  # Power network internals
-├── transport/              # Conveyor system
-└── ui/                     # Machine GUIs
-
-src/main/resources/
-├── manifest.json           # Plugin manifest
-├── Common/                 # Textures and UI assets
-│   ├── BlockTextures/
-│   ├── Icons/
-│   └── UI/
-└── Server/                 # Game data
-    ├── Item/Items/         # Item/block definitions
-    ├── Item/Recipes/       # Crafting recipes
-    └── Languages/          # Translations
-```
-
-## Commands
-
-| Command | Description |
-|---------|-------------|
-| `/fabrica` | Show plugin info |
-| `/fabrica power` | Debug power network stats |
-| `/fabrica give <item>` | Give yourself a Fabrica item |
 
 ## License
 
